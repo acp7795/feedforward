@@ -58,7 +58,7 @@ public class DataGenerationService {
         private List<Rating> ratings;
         private List<AccessTime> accessTimes;
         private List<Follow> follows;
-        private List<Collection> collections;
+        private List<com.videogamedb.models.Collection> collections;
         private Map<String, String> plainUserPasswords; // For testing
     }
 
@@ -337,15 +337,23 @@ public class DataGenerationService {
         return bundle;
     }
 
-    private List<Collection> generateCollections(List<User> users, List<VideoGame> games) {
-        List<Collection> collections = new ArrayList<>();
+    /**
+     * Generates mock collections for users.
+     * Each user may have 0-2 collections, each containing 1-5 games.
+     *
+     * @param users List of generated users
+     * @param games List of generated video games
+     * @return List of generated collections
+     */
+    private List<com.videogamedb.models.Collection> generateCollections(List<User> users, List<VideoGame> games) {
+        List<com.videogamedb.models.Collection> collections = new ArrayList<>();
         List<String> gameIds = games.stream().map(VideoGame::getId).toList();
 
         for (User user : users) {
             int collectionCount = random.nextInt(3); // 0-2 collections per user
 
             for (int i = 0; i < collectionCount; i++) {
-                Collection collection = new Collection();
+                com.videogamedb.models.Collection collection = new com.videogamedb.models.Collection();
                 collection.setId(new ObjectId().toHexString());
                 collection.setName(faker.lorem().word() + " Collection");
                 collection.setDescription(faker.lorem().sentence());
