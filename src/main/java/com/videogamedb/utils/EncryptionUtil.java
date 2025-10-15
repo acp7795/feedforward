@@ -33,7 +33,8 @@ public class EncryptionUtil {
 
     public EncryptionUtil(@Value("${app.encryption.key}") String encryptionKey) {
         if (encryptionKey == null || encryptionKey.isEmpty()) {
-            throw new IllegalStateException("ENCRYPTION_KEY is not set. Application cannot start without encryption key.");
+            throw new IllegalStateException(
+                    "ENCRYPTION_KEY is not set. Application cannot start without encryption key.");
         }
 
         try {
@@ -41,7 +42,7 @@ public class EncryptionUtil {
             byte[] keyBytes;
             if (encryptionKey.length() == 44 || encryptionKey.length() == 43) {
                 // Likely base64 encoded (32 bytes = 43-44 chars in base64)
-                keyBytes = Base64.getDecoder().decode(encryptionKey);
+                keyBytes = Base64.getUrlDecoder().decode(encryptionKey);
             } else {
                 // Use SHA-256 to derive a 32-byte key
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -147,9 +148,9 @@ public class EncryptionUtil {
         String localPart = parts[0];
         String domain = parts[1];
 
-        String maskedLocal = localPart.length() > 3 
-            ? localPart.substring(0, 3) + "***" 
-            : "***";
+        String maskedLocal = localPart.length() > 3
+                ? localPart.substring(0, 3) + "***"
+                : "***";
 
         return maskedLocal + "@" + domain;
     }

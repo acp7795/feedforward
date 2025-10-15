@@ -1,13 +1,13 @@
 spring:
   application:
     name: videogamedb-api
-  
+
   data:
     mongodb:
-      uri: ${MONGO_URI:mongodb://localhost:27017/videogamedb}
+      uri: ${MONGO_URI:mongodb+srv://acp7795_db_user:pOApVyqIPpORGdBj@cluster0.prggadj.mongodb.net/videogamedb?retryWrites=true&w=majority&appName=Cluster0}
       database: ${MONGO_DATABASE:videogamedb}
       auto-index-creation: false
-  
+
   session:
     store-type: mongodb
     mongodb:
@@ -15,7 +15,7 @@ spring:
     timeout: 1800
 
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
   servlet:
     context-path: /
     session:
