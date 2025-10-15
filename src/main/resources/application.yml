@@ -5,6 +5,7 @@ spring:
   data:
     mongodb:
       uri: ${MONGO_URI:mongodb://localhost:27017/videogamedb}
+      database: ${MONGO_DATABASE:videogamedb}
       auto-index-creation: false
   
   session:
