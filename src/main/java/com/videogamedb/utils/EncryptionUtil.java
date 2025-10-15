@@ -41,7 +41,8 @@ public class EncryptionUtil {
             byte[] keyBytes;
             if (encryptionKey.length() == 44 || encryptionKey.length() == 43) {
                 // Likely base64 encoded (32 bytes = 43-44 chars in base64)
-                keyBytes = Base64.getDecoder().decode(encryptionKey);
+                // Use URL-safe decoder to support keys with underscores and hyphens
+                keyBytes = Base64.getUrlDecoder().decode(encryptionKey);
             } else {
                 // Use SHA-256 to derive a 32-byte key
                 MessageDigest digest = MessageDigest.getInstance("SHA-256");
