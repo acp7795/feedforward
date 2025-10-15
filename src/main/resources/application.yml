@@ -28,7 +28,7 @@ server:
 
 app:
   encryption:
-    key: ${ENCRYPTION_KEY:}
+    key: ${ENCRYPTION_KEY:V8ACU_XVui0O6_ZP6gs2smzJSFBMiVXhpmEaYf11tK8=}
   security:
     pbkdf2-iterations: 310000
     max-login-attempts: 5
