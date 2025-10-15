@@ -1,0 +1,17 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/videogamedb-test
+
+app:
+  encryption:
+    key: dGVzdC1lbmNyeXB0aW9uLWtleS0zMi1ieXRlcw==
+  security:
+    pbkdf2-iterations: 10000
+    max-login-attempts: 5
+    account-lock-minutes: 30
+
+logging:
+  level:
+    root: INFO
+    com.videogamedb: DEBUG
